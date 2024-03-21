@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class MainLayout extends Component
 {
+    public $titulo;   
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($titulo)
     {
-        //
+        $this->titulo = $titulo;
     }
 
     /**
