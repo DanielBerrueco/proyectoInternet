@@ -12,7 +12,8 @@ class AccessoryController extends Controller
      */
     public function index()
     {
-        //
+        $accessories = Accessory::all();
+        return view('accessories/accessoriesList', compact('accessories'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AccessoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('accessories/createAccessory');
     }
 
     /**
@@ -28,7 +29,21 @@ class AccessoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => ['required', 'string', 'max:255'],
+            'stock' => ['required', 'integer'],
+            'minimo' => ['required', 'integer'],
+            'ubicacion' => ['required', 'string', 'max:255'],
+        ]);
+
+        $accessorio = new Accessory();
+        $accessorio -> nombre = $request -> nombre;
+        $accessorio -> stock = $request -> stock;
+        $accessorio -> minimo = $request ->minimo;
+        $accessorio -> ubicacion = $request -> ubicacion;
+        $accessorio -> save();
+
+        return redirect() -> route('accessory.index');
     }
 
     /**
@@ -36,7 +51,7 @@ class AccessoryController extends Controller
      */
     public function show(Accessory $accessory)
     {
-        //
+        return view('accessories/detailsAccessory', compact('accessory'));
     }
 
     /**
@@ -44,7 +59,7 @@ class AccessoryController extends Controller
      */
     public function edit(Accessory $accessory)
     {
-        //
+        return view('accessories/editAccessory', compact('accessory'));
     }
 
     /**
@@ -52,7 +67,19 @@ class AccessoryController extends Controller
      */
     public function update(Request $request, Accessory $accessory)
     {
-        //
+        $request-> validate([
+            'nombre' => ['required', 'string', 'max 255'],
+            'stock' => ['required', 'integer'],
+            'minimo' => ['required', 'integer'],
+            'ubicacion' => ['required', 'string', 'max:255'],
+        ]);
+        $accessory -> nombre = $request -> nombre;
+        $accessory -> stock = $request -> stock;
+        $accessory -> minimo = $request ->minimo;
+        $accessory -> ubicacion = $request -> ubicacion;
+        $accessory -> save();
+
+        return redirect()->route('accessory.show', $accessory);
     }
 
     /**
@@ -60,6 +87,7 @@ class AccessoryController extends Controller
      */
     public function destroy(Accessory $accessory)
     {
-        //
+        $accessory->delete();
+        return redirect()->route('accessory.index');
     }
 }
