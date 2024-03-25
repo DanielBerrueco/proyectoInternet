@@ -3,46 +3,35 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <td>Id</td>
-                    <td>Nombre</td>
-                    <td>Stock actual</td>
-                    <td>Stock mínimo</td>
-                    <td>Ubicación</td>
-                    <td>Acciones</td>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Stock actual</th>
+                    <th>Stock mínimo</th>
+                    <th>Ubicación</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <td>Id</td>
-                    <td>Nombre</td>
-                    <td>Stock actual</td>
-                    <td>Stock mínimo</td>
-                    <td>Ubicación</td>
-                    <td>Acciones</td>
-                </tr>
-            </tfoot>
             <tbody>
                 @foreach($accessories as $accessory)
                     <tr>
                         <td>{{ $accessory -> id }}</td>
-                        <td>{{ $accessory-> nombre }}</td>
+                        <td>{{ $accessory -> nombre }}</td>
                         <td>{{ $accessory -> stock }}</td>
                         <td>{{ $accessory -> minimo }}</td>
-                        <td>{{  $accessory -> Ubicación }}</td>
+                        <td>{{ $accessory -> ubicacion }}</td>
                         <td>
-                            <a href="{{ route('accessory.show', $accessory) }}" class="btn btn-primary">Ver detalles</a>
-                            <a href="{{ route('accessory.edit', $accessory) }}" class="btn btn-primary">Editar</a>
+                            <a class="btn btn-primary" href="{{ route('accessory.show', $accessory) }}">Ver detalles</a> 
+                            <a class="btn btn-primary" href="{{ route('accessory.edit', $accessory) }}">Editar</a> 
                             <form action="{{ route('accessory.destroy', $accessory) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Eliminar" class="btn btn-primary">
+                                <input class="btn btn-primary" type="submit" value="Eliminar">
                             </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('accessory.create') }}" class="btn btn-primary">Agregar nuevo accesorio</a>
+        <a class="btn btn-primary" href="{{ route('accessory.create') }}">Agregar nuevo accesorio</a>
     </div>
-    
 </x-main-layout>

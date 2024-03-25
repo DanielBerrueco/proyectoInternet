@@ -68,7 +68,7 @@ class AccessoryController extends Controller
     public function update(Request $request, Accessory $accessory)
     {
         $request-> validate([
-            'nombre' => ['required', 'string', 'max 255'],
+            'nombre' => ['required', 'string', 'max:255'],
             'stock' => ['required', 'integer'],
             'minimo' => ['required', 'integer'],
             'ubicacion' => ['required', 'string', 'max:255'],
