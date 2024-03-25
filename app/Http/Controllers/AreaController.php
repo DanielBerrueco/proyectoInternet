@@ -12,7 +12,8 @@ class AreaController extends Controller
      */
     public function index()
     {
-        //
+        $areas=Area::all();
+        return view('areas/listaArea', compact('areas'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AreaController extends Controller
      */
     public function create()
     {
-        //
+        return view('areas/agregarArea');
     }
 
     /**
@@ -28,7 +29,19 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate([
+            'piso'=>['required','string'],
+            'servicio'=>['required','string'],
+            'jefe_id'=>['required','string'],
+            'ingBiomedico_id'=>['required','string'],
+       ]);
+       $area=new Area();
+       $area->piso=$request->piso;
+       $area->servicio=$request->servicio;
+       $area->jefe_id=$request->jefe_id;
+       $area->ingBiomedico_id=$request->ingBiomedico_id;
+       $area->save();
+       return redirect()->route('areas.index');
     }
 
     /**
@@ -36,7 +49,7 @@ class AreaController extends Controller
      */
     public function show(Area $area)
     {
-        //
+        return view('areas/showArea', compact('area'));
     }
 
     /**
@@ -44,7 +57,7 @@ class AreaController extends Controller
      */
     public function edit(Area $area)
     {
-        //
+        return view('areas/editArea', compact('area'));
     }
 
     /**
@@ -52,7 +65,18 @@ class AreaController extends Controller
      */
     public function update(Request $request, Area $area)
     {
-        //
+        $request->validate([
+            'piso'=>['required','string'],
+            'servicio'=>['required','string'],
+            'jefe_id'=>['required','string'],
+            'ingBiomedico_id'=>['required','string'],
+       ]);
+       $area->piso=$request->piso;
+       $area->servicio=$request->servicio;
+       $area->jefe_id=$request->jefe_id;
+       $area->ingBiomedico_id=$request->ingBiomedico_id;
+       $area->save();
+       return redirect()->route('areas.show', $area);
     }
 
     /**
@@ -60,6 +84,7 @@ class AreaController extends Controller
      */
     public function destroy(Area $area)
     {
-        //
+        $area->delete();
+        return redirect()->route('areas.index');
     }
 }
