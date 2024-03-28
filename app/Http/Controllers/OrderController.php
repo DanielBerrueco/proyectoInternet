@@ -12,7 +12,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('order/indexOrder', compact('orders'));
     }
 
     /**
@@ -20,7 +20,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('order/createOrder');
     }
 
     /**
@@ -28,7 +28,28 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          
+            
+            'status' =>   ['required', 'string', 'max:255'],
+            'jefa_id' =>   ['required', 'string', 'max:255'],
+            'equipo_id' =>   ['required', 'string', 'max:255'],
+            'area_id' =>  ['required', 'string', 'max:255'],
+            'ubicacion' =>  ['required', 'string', 'max:255'],
+            'falla' => 'required | string | min:5',
+        ]);
+
+        $order = new Order();
+        $order->status = $request->status;
+        $order->jefa_id = $request->jefa_id;
+        $order->equipo_id = $request->equipo_id;
+        $order->area_id = $request->area_id;
+        $order->ubicacion = $request->ubicacion;
+        $order->falla = $request->falla;
+        $order->save();
+
+        return redirect()->route('order.index');
+    
     }
 
     /**
@@ -36,7 +57,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('order.showOrder', compact('order'));
     }
 
     /**
@@ -44,7 +65,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('order.editOrder', compact('order'));
     }
 
     /**
@@ -52,7 +73,27 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $request->validate([
+          
+            
+            'status' =>   ['required', 'string', 'max:255'],
+            'jefa_id' =>   ['required', 'string', 'max:255'],
+            'equipo_id' =>   ['required', 'string', 'max:255'],
+            'area_id' =>  ['required', 'string', 'max:255'],
+            'ubicacion' =>  ['required', 'string', 'max:255'],
+            'falla' => 'required | string | min:5',
+        ]);
+
+        $order = new Order();
+        $order->status = $request->status;
+        $order->jefa_id = $request->jefa_id;
+        $order->equipo_id = $request->equipo_id;
+        $order->area_id = $request->area_id;
+        $order->ubicacion = $request->ubicacion;
+        $order->falla = $request->falla;
+        $order->save();
+        
+        return redirect()->route('order.show', $order);
     }
 
     /**
@@ -60,6 +101,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect()->route('order.index');
     }
 }

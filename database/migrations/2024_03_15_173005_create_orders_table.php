@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipment', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('stats');
+            $table->string('status');
             $table->foreignId('jefa_id')->constrained('users');
             $table->foreignId('equipo_id')->constrained('equipment');
-            $table->foreignId('ingBiomedico_id')->constrained('users');
             $table->foreignId('area_id')->constrained('areas');
             $table->string('ubicacion');
             $table->text('falla');
-            $table->date('fecha_ejecucion');
             $table->timestamps();
         });
     }
