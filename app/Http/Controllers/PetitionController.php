@@ -12,7 +12,8 @@ class PetitionController extends Controller
      */
     public function index()
     {
-        //
+        $petitions=Petition::all();
+        return view('petitions/listaPetition', compact('petitions'));
     }
 
     /**
@@ -20,7 +21,7 @@ class PetitionController extends Controller
      */
     public function create()
     {
-        //
+        return view('petitions/agregarPetition');
     }
 
     /**
@@ -28,7 +29,19 @@ class PetitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'accesorio_id'=>['required', 'string'],
+            'equipo_id'=>['required', 'string'],
+            'ingBiomedico_id'=>['required', 'string']
+        ]);
+        $peticion=new Petition();
+        $peticion->accesorio_id=$request->accesorio_id;
+        $peticion->equipo_id=$request->equipo_id;
+        $peticion->ingBiomedico_id=$request->ingBiomedico_id;
+        date_default_timezone_set('America/Mexico_City');
+        $peticion->fecha_hora=date('Y/m/d h:i:s', time());
+        $peticion->save();
+        return redirect()->route('petition.index');
     }
 
     /**
@@ -36,7 +49,7 @@ class PetitionController extends Controller
      */
     public function show(Petition $petition)
     {
-        //
+        return view('petitions/showPetition', compact('petition'));
     }
 
     /**
@@ -44,7 +57,7 @@ class PetitionController extends Controller
      */
     public function edit(Petition $petition)
     {
-        //
+        return view('petitions/editPetition', compact('petition'));
     }
 
     /**
@@ -52,7 +65,16 @@ class PetitionController extends Controller
      */
     public function update(Request $request, Petition $petition)
     {
-        //
+        $request->validate([
+            'accesorio_id'=>['required', 'string'],
+            'equipo_id'=>['required', 'string'],
+            'ingBiomedico_id'=>['required', 'string']
+        ]);
+        $petition->accesorio_id=$request->accesorio_id;
+        $petition->equipo_id=$request->equipo_id;
+        $petition->ingBiomedico_id=$request->ingBiomedico_id;
+        $petition->save();
+        return redirect()->route('petition.show', $petition);
     }
 
     /**
@@ -60,6 +82,7 @@ class PetitionController extends Controller
      */
     public function destroy(Petition $petition)
     {
-        //
+        $petition->delete();
+        return redirect()->route('petition.index');
     }
 }
