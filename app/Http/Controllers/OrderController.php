@@ -12,7 +12,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('order/indexOrder', compact('orders'));
     }
 
     /**
@@ -20,7 +21,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('order/createOrder');
     }
 
     /**
@@ -28,7 +29,32 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          
+            
+            'stats' =>   ['required'],
+            'jefa_id' =>   ['required', 'integer'],
+            'equipo_id' =>   ['required', 'integer'],
+            'ingBiomedico_id' =>   ['required', 'integer'],
+            'area_id' =>  ['required', 'integer'],
+            'ubicacion' =>  ['required', 'string', 'max:255'],
+            'falla' => ['required', 'string', 'max:255'],
+            'fecha_ejecucion' => ['required', 'date'],
+        ]); 
+        
+        $order = new Order();
+        $order->stats = $request->stats;
+        $order->jefa_id = $request->jefa_id;
+        $order->equipo_id = $request->equipo_id;
+        $order->ingBiomedico_id= $request->ingBiomedico_id;
+        $order->area_id = $request->area_id;
+        $order->ubicacion = $request->ubicacion;
+        $order->falla = $request->falla;
+        $order->fecha_ejecucion = $request->fecha_ejecucion;
+        $order->save();
+
+        return redirect()->route('order.index');
+    
     }
 
     /**
@@ -36,7 +62,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('order.showOrder', compact('order'));
     }
 
     /**
@@ -44,15 +70,31 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('order.editOrder', compact('order'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Order $order)
-    {
-        //
+    {  
+        $order->update($request->all());
+          
+      
+        
+
+        /*$order = new Order();
+        $order->status = $request->status;
+        $order->jefa_id = $request->jefa_id;
+        $order->equipo_id = $request->equipo_id;
+        $order->ingBiomedico_id= $request->ingBiomedico_id;
+        $order->area_id = $request->area_id;
+        $order->ubicacion = $request->ubicacion;
+        $order->falla = $request->falla;
+        $order->fecha_ejecucion = $request->fecha_ejecucion;
+        $order->save();*/
+        
+        return redirect()->route('order.show', $order);
     }
 
     /**
@@ -60,6 +102,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect()->route('order.index');
     }
 }
