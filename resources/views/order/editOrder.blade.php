@@ -1,16 +1,11 @@
 <x-main-layout titulo="Editar">
+<a href="{{route('order.index') }}" class="btn btn-primary">Regresar</a>
     <div class="card-body">
-
-        
-    <a href="{{route('order.index') }}" class="btn btn-primary">Listado de ordenes de servicio</a>
-        <hr>
-  
-   
         <form action=" {{route('order.update', $order->id) }}" method="POST">
             @csrf
             @method('PATCH')
             <div class="form-group">  
-            <select name="stats" id="stats">
+            <select name="stats" id="stats" class="form-control">
                 <option value="Funcionando" @selected($order->stats == 'Funcionando')>Funcionando</option>
                 <option value="En reparacion" @selected($order->stats == 'En reparacion')>En reparacion</option>
                 <option value="Fuera de servicio" @selected($order->stats == 'Fuera de servicio')>Fuera de servicio</option>
@@ -43,7 +38,7 @@
             
             <div class="form-group">
             <label for="ubicacion">Ubicacion</label>
-            <input type="text" id="ubicacion" name="ubicacion" value="{{ $order->ubicacion }}">
+            <input type="text" id="ubicacion" name="ubicacion" value="{{ $order->ubicacion }}" class="form-control">
             </div>
             <br><br>
 
@@ -52,16 +47,18 @@
             </div>
             <br>
             <div class="form-group">
-            <textarea name="falla" cols="30" rows="10"> {{ $order->falla }} </textarea>
+            <textarea name="falla" cols="30" rows="10" class="form-control"> {{ $order->falla }} </textarea>
             </div>
             <br><br>
-            <input type="submit" class="btn btn-primary">
+            
 
             <div class="form-group">
             <label for="fecha_ejecucion">Fecha de ejecucion</label>
-            <input type="date" id="fecha_ejecucion" name="fecha_ejecucion" value="{{ $order->fecha_ejecucion}}">
+            <input type="date" id="fecha_ejecucion" name="fecha_ejecucion" value="{{ $order->fecha_ejecucion}}" class="form-control">
             </div>
             <br><br>
+
+            <input type="submit" class="btn btn-primary">
         </form>
     </div>
 

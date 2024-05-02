@@ -1,10 +1,6 @@
 <x-main-layout titulo="Crear">
-    <div class="card-body">>
-
-        <a href="{{route('order.index') }}" class="btn btn-primary">Mostrar Listado de Oredenes de Servicio</a>
-        <hr>
-       
-        
+    <a href="{{route('order.index')}}" class="btn btn-primary">Regresar</a>
+    <div class="card-body">
         <form action="{{route('order.store') }}" method="POST">
             @csrf
             <div class="form-group">
@@ -70,15 +66,6 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             </div>
-
-            <div class="form-group">
-            <label for="fecha_ejecucion">Fecha de ejecucion: </label>
-            <input type="date" id="fecha_ejecucion" name="fecha_ejecucion" value="{{old('fecha_ejecucion')}}" required class="form-control">
-            @error('fecha_ejecucion')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            </div>
-
             <input type="submit" class="btn btn-primary">
         </form>
     </div>
