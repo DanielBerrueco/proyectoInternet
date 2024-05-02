@@ -9,18 +9,18 @@ class Petition extends Model
 {
     use HasFactory;
 
-    public function accessoy()
+    public function accessory()
     {
-        return $this->belongsTo(Accessory::class, 'id');
+        return $this->belongsTo(Accessory::class, 'accesorio_id');
     }
 
     public function equipment()
     {
-        return $this->belongsTo(Equipment::class, 'id');
+        return $this->belongsTo(Equipment::class, 'equipo_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'ingBiomedico_id');
     }
 }

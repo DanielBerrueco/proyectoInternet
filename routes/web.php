@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PetitionController;
 use App\Http\Controllers\AccessoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,5 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::resource('petition', PetitionController::class);
 Route::resource('accessory', AccessoryController::class);
