@@ -12,7 +12,9 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        //
+        $equipments = Equipment::all();
+        //dd($equipo_medicos); // para debuguear
+        return view('equipment/indexEquipment', compact('equipments'));
     }
 
     /**
@@ -20,7 +22,7 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('equipment/createEquipment');
     }
 
     /**
@@ -28,7 +30,31 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          
+            'nombre' =>   ['required', 'string', 'max:255'],
+            'marca' =>   ['required', 'string', 'max:255'],
+            'modelo' =>   ['required', 'string', 'max:255'],
+            'n_serie' =>   ['required', 'string', 'max:255'],
+            'status_eq_med' => ['required'],
+            'area_id' =>   ['required', 'integer'],
+            
+        ]);
+        
+        
+        
+        $equipment = new Equipment();
+        $equipment->id = $request->id;
+        $equipment->nombre = $request->nombre;
+        $equipment->marca = $request->marca;
+        $equipment->modelo = $request->modelo;
+        $equipment->n_serie = $request->n_serie;
+        $equipment->status_eq_med= $request->status_eq_med;
+        $equipment->area_id = $request->area_id;
+        
+        $equipment ->save();
+
+        return redirect()->route('equipment.index');
     }
 
     /**
@@ -36,7 +62,7 @@ class EquipmentController extends Controller
      */
     public function show(Equipment $equipment)
     {
-        //
+        return view('equipment.showEquipment', compact('equipment'));
     }
 
     /**
@@ -44,7 +70,7 @@ class EquipmentController extends Controller
      */
     public function edit(Equipment $equipment)
     {
-        //
+        return view('equipment.editEquipment', compact('equipment'));
     }
 
     /**
@@ -52,7 +78,17 @@ class EquipmentController extends Controller
      */
     public function update(Request $request, Equipment $equipment)
     {
-        //
+        $equipment->update($request->all());
+        /*$equipment = new Equipment();
+        $equipment->id = $request->id;
+        $equipment->nombre = $request->nombre;
+        $equipment->marca = $request->marca;
+        $equipment->modelo = $request->modelo;
+        $equipment->n_serie = $request->n_serie;
+        $equipment->status_eq_med= $request->status_eq_med;
+        $equipment->area_id = $request->area_id;*/
+
+        return redirect()->route('equipment.show', $equipment);
     }
 
     /**
@@ -60,6 +96,7 @@ class EquipmentController extends Controller
      */
     public function destroy(Equipment $equipment)
     {
-        //
+        $equipment->delete();
+        return redirect()->route('equipment.index');
     }
 }
