@@ -16,8 +16,8 @@
                     <td>{{$area->id}}</td>
                     <td>{{$area->piso}}</td>
                     <td>{{$area->servicio}}</td>
-                    <td>{{$area->jefe_id}}</td>
-                    <td>{{$area->ingBiomedico_id}}</td>
+                    <td>{{$area->user2->name}}</td>
+                    <td>{{$area->user->name}}</td>
                     <td>
                         <a class="btn btn-primary" href="{{route('areas.show',$area)}}">Ver Info</a>
                         <a class="btn btn-primary" href="{{route('areas.edit', $area)}}">Editar Area</a>
