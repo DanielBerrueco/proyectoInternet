@@ -12,7 +12,7 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas=Area::all();
+        $areas = Area::with('user', 'user2')->get();
         return view('areas/listaArea', compact('areas'));
     }
 

@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             AccessorySeeder::class,
             EquipmentSeeder::class, 
             OrderSeeder::class, 
+            AccessoryEquipmentSeeder::class,
             PetitionSeeder::class,
         ]);
     }
