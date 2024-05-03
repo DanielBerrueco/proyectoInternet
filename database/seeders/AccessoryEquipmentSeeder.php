@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Accessory;
@@ -14,70 +14,100 @@ class AccessoryEquipmentSeeder extends Seeder
      */
     public function run(): void
     {
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>1,
-            'accessory_id'=>1
+            'accessory_id'=>1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>1,
-            'accessory_id'=>2
+            'accessory_id'=>2,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>1,
-            'accessory_id'=>4
+            'accessory_id'=>4,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>2,
-            'accessory_id'=>1
+            'accessory_id'=>1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>2,
-            'accessory_id'=>3
+            'accessory_id'=>3,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>2,
-            'accessory_id'=>4
+            'accessory_id'=>4,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>3,
-            'accessory_id'=>1
+            'accessory_id'=>1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>3,
-            'accessory_id'=>4
+            'accessory_id'=>4,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>3,
-            'accessory_id'=>5
+            'accessory_id'=>5,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>4,
-            'accessory_id'=>2
+            'accessory_id'=>2,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>4,
-            'accessory_id'=>3
+            'accessory_id'=>3,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>4,
-            'accessory_id'=>5
+            'accessory_id'=>5,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>5,
-            'accessory_id'=>2
+            'accessory_id'=>2,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>5,
-            'accessory_id'=>3
+            'accessory_id'=>3,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        db::table('accessory_equipment')->insert([
+        DB::table('accessory_equipment')->insert([
             'equipment_id'=>5,
-            'accessory_id'=>4
+            'accessory_id'=>4,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }
