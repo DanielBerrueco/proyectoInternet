@@ -12,7 +12,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::with('equipment', 'area', 'user', 'user2')->get();
         return view('order/indexOrder', compact('orders'));
     }
 

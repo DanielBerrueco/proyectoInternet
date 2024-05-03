@@ -4,12 +4,12 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>Id orden</th>
+                    <th>Orden</th>
                     <th>Status</th>
-                    <th>Id jefa</th>
-                    <th>Id equipo</th>
-                    <th>Id Ing Biomedico</th>
-                    <th>Id area</th>
+                    <th>Jefa</th>
+                    <th>Equipo</th>
+                    <th>Ing Biomedico</th>
+                    <th>Area</th>
                     <th>Ubicacion</th>
                     <th>Falla</th>
                     <th>Fecha de creacion:   </th>
@@ -22,10 +22,10 @@
                     <tr>
                         <td>{{ $order->id }}</td>
                         <td>{{ $order->stats }}</td>
-                        <td>{{ $order->jefa_id }}</td>
-                        <td>{{ $order->equipo_id }}</td>
-                        <td>{{ $order->ingBiomedico_id }}</td>
-                        <td>{{ $order->area_id }}</td>
+                        <td>{{ $order->user2->name }}</td>
+                        <td>{{ $order->equipment->nombre }}</td>
+                        <td>{{ $order->user->name  }}</td>
+                        <td>{{ $order->area->servicio }}</td>
                         <td>{{ $order->ubicacion }}</td>
                         <td>{{ $order->falla }}</td>   
                         <td>{{ $order->created_at }}</td> 

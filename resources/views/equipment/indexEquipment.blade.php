@@ -9,9 +9,9 @@
                     <th>Nombre</th>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    <th>No/serie</th>
+                    <th>No serie</th>
                     <th>Status Equipo Medico</th>
-                    <th>Id area</th>
+                    <th>Area</th>
                     <th>Fecha</th>
                     <th>Acciones</th>
                 </tr>
@@ -25,7 +25,7 @@
                         <td>{{ $equipment->modelo}}</td>
                         <td>{{ $equipment->n_serie}}</td>
                         <td>{{ $equipment->status_eq_med}}</td> 
-                        <td>{{ $equipment->area_id}}</td>  
+                        <td>{{ $equipment->area->servicio}}</td>  
                     
                         <td>{{ $equipment->created_at}}</td> 
                         <td>

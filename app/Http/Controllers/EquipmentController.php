@@ -12,7 +12,7 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        $equipments = Equipment::all();
+        $equipments = Equipment::with('area')->get();
         //dd($equipo_medicos); // para debuguear
         return view('equipment/indexEquipment', compact('equipments'));
     }

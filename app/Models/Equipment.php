@@ -15,8 +15,10 @@ class Equipment extends Model
         'n_serie',
         'status_eq_med',
         'area_id',
-       
-
         //protected $guarded = ['id, created_at, 'updated_at'];
     ];
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id');
+    }
 }
