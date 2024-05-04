@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Accessory;
 use App\Models\Equipment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EquipmentController extends Controller
 {
@@ -13,8 +15,11 @@ class EquipmentController extends Controller
     public function index()
     {
         $equipments = Equipment::with('area')->get();
-        //dd($equipo_medicos); // para debuguear
-        return view('equipment/indexEquipment', compact('equipments'));
+        foreach ($equipments as $equipment) {
+            $accessoryNames = $equipment->accessory->pluck('nombre');
+            $accessories[$equipment->id] = $accessoryNames;
+        }
+        return view('equipment/indexEquipment', compact('equipments', 'accessories'));
     }
 
     /**
@@ -62,7 +67,9 @@ class EquipmentController extends Controller
      */
     public function show(Equipment $equipment)
     {
-        return view('equipment.showEquipment', compact('equipment'));
+        $accessoryNames = $equipment->accessory->pluck('nombre');
+        $accessories[$equipment->id] = $accessoryNames;
+        return view('equipment.showEquipment', compact('equipment', 'accessories'));
     }
 
     /**
