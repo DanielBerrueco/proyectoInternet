@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('minimo');
             $table->string('ubicacion');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
