@@ -6,12 +6,14 @@ use App\Http\Controllers\PetitionController;
 use App\Http\Controllers\AccessoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can regperilister web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
@@ -37,3 +39,4 @@ Route::middleware([
 Route::resource('petition', PetitionController::class);
 Route::resource('accessory', AccessoryController::class);
 Route::resource('areas', AreaController::class);
+Route::resource('perfil', ProfileController::class);
