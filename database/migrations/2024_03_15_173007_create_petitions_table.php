@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('equipo_id')->constrained('equipment');
             $table->foreignId('ingBiomedico_id')->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
