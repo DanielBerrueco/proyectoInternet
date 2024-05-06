@@ -5,12 +5,13 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>Id equipo medico</th>
+                    <th>Id</th>
                     <th>Nombre</th>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    <th>No serie</th>
-                    <th>Status Equipo Medico</th>
+                    <th>No. Serie</th>
+                    <th>Accesorios</th>
+                    <th>Status</th>
                     <th>Area</th>
                     <th>Fecha</th>
                     <th>Acciones</th>
@@ -22,11 +23,15 @@
                         <td>{{ $equipment->id}}</td>
                         <td>{{ $equipment->nombre}}</td>
                         <td>{{ $equipment->marca}}</td>
-                        <td>{{ $equipment->modelo}}</td>
+                        <td>{{ $equipment->modelo}}</td>           
                         <td>{{ $equipment->n_serie}}</td>
+                        <td>
+                            @foreach ($accessories[$equipment->id] as $accessory_id)
+                                <li class="list-group-item">{{ $accessory_id }}</li>
+                            @endforeach
+                        </td>
                         <td>{{ $equipment->status_eq_med}}</td> 
                         <td>{{ $equipment->area->servicio}}</td>  
-                    
                         <td>{{ $equipment->created_at}}</td> 
                         <td>
                             <a class="btn btn-primary" href="{{ route('equipment.show', $equipment) }}">Ver</a>

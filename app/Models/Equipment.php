@@ -21,4 +21,9 @@ class Equipment extends Model
     {
         return $this->belongsTo(Area::class, 'area_id');
     }
+
+    public function accessory()
+    {
+        return $this->belongsToMany(Accessory::class);
+    }
 }
