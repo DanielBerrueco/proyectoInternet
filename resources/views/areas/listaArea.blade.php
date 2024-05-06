@@ -32,5 +32,6 @@
             </tbody>
         </table>
         <a class="btn btn-primary" href="{{route('areas.create')}}">Agregar Area</a>
+
     </div>
 </x-main-layout>

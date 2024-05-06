@@ -22,6 +22,12 @@
                         <td>
                             <a class="btn btn-primary" href="{{ route('petition.show', $petition) }}">Ver detalles</a> 
                             <a class="btn btn-primary" href="{{ route('petition.edit', $petition) }}">Editar</a> 
+                            <form action="{{ route('generar.pdf') }}" method="GET">
+                                @csrf 
+                                <input type="hidden" name="petition" value="{{ json_encode($petition) }}">
+                                <input class="btn btn-primary" type="submit" value="Descargar PDF">
+                            </form>
+                            <!-- <a href="{{ route('generar.pdf') }}" class="btn btn-primary">Descargar PDF</a> -->
                             <form action="{{ route('petition.destroy', $petition) }}" method="post">
                                 @csrf
                                 @method('DELETE')
