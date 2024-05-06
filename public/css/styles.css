@@ -11241,3 +11241,7 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
+
+input[type="submit"]{
+  margin:3px 3px 3px 0px;
+}
