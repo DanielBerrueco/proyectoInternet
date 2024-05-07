@@ -32,10 +32,13 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{--{{ route('perfil.index') }} --}}">Perfil</a></li>
                         <li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" x-data>
+                            <form method="POST" action="{{ route('logout') }}" class="inline">
                                 @csrf
-                                <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="dropdown-item">Cerrar sesión</a>
-                              </form>
+            
+                                <button type="submit" class="dropdown-item">
+                                    {{ __('Log Out') }}
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </li>
