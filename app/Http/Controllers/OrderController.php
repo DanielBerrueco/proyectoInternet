@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Middleware\middlewareOrdenes;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('middleware.ordenes')->only(['create', 'store']);
+    }  
+
     /**
      * Display a listing of the resource.
      */
@@ -21,6 +27,8 @@ class OrderController extends Controller
      */
     public function create()
     {
+        // Verificar que el usuario tenga el puesto de "Enfermero" antes de mostrar la vista
+        
         return view('order/createOrder');
     }
 
