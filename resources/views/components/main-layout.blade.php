@@ -31,7 +31,12 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{--{{ route('perfil.index') }} --}}">Perfil</a></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" x-data>
+                                @csrf
+                                <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="dropdown-item">Cerrar sesión</a>
+                              </form>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -100,5 +105,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
+        <script>
+            document.getElementById('logout-link').addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById('logout-form').submit();
+        </script>
+        
     </body>
 </html>
