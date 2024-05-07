@@ -22,9 +22,6 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('equipment', EquipmentController::class);
-
-Route::resource('order', OrderController::class);
 
 Route::middleware([
     'auth:sanctum',
@@ -36,7 +33,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('petition', PetitionController::class);
 Route::resource('accessory', AccessoryController::class);
 Route::resource('areas', AreaController::class);
+Route::resource('equipment', EquipmentController::class);
+Route::resource('order', OrderController::class);
+Route::resource('petition', PetitionController::class);
 Route::resource('perfil', ProfileController::class);
