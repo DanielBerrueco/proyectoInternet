@@ -26,8 +26,8 @@
                         <td>{{ $equipment->modelo}}</td>           
                         <td>{{ $equipment->n_serie}}</td>
                         <td>
-                            @foreach ($accessories[$equipment->id] as $accessory_id)
-                                <li class="list-group-item">{{ $accessory_id }}</li>
+                            @foreach ($equipment->accessory as $accessory)
+                                <li class="list-group-item">{{ $accessory->nombre }}</li>
                             @endforeach
                         </td>
                         <td>{{ $equipment->status_eq_med}}</td> 

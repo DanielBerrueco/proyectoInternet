@@ -14,12 +14,8 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        $equipments = Equipment::with('area')->get();
-        foreach ($equipments as $equipment) {
-            $accessoryNames = $equipment->accessory->pluck('nombre');
-            $accessories[$equipment->id] = $accessoryNames;
-        }
-        return view('equipment/indexEquipment', compact('equipments', 'accessories'));
+        $equipments = Equipment::with('area', 'accessory')->get();
+        return view('equipment/indexEquipment', compact('equipments'));
     }
 
     /**
