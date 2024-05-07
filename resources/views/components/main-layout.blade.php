@@ -9,6 +9,7 @@
         <title>{{ $titulo }}</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href={{ asset('css/styles.css') }} rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -29,6 +30,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{--{{ route('perfil.index') }} --}}">Perfil</a></li>
                         <li><a class="dropdown-item" href="#!">Logout</a></li>
                     </ul>
                 </li>
@@ -39,62 +41,25 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                {{-- Dashboard --}}
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                {{-- Layouts --}}
+                            <a class="nav-link collapsed" href="{{ route('order.index') }}" aria-expanded="false">
+                                <div><i class="bi bi-clipboard"></i>   Órdenes</div>
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">{{--  --}}</a>
-                                    <a class="nav-link" href="#">{{--  --}}</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                {{-- Pages --}}
+                            <a class="nav-link collapsed" href="{{ route('petition.index') }}" aria-expanded="false">
+                                <div><i class="bi bi-card-checklist"></i>   Peticiones</div>
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        {{-- Authentication --}}
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="#">{{-- Login --}}</a>
-                                            <a class="nav-link" href="#">{{-- Register --}}</a>
-                                            <a class="nav-link" href="#">{{-- Forgot password --}}</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        {{-- Error --}}
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="#">{{-- 401 Page --}}</a>
-                                            <a class="nav-link" href="#">{{-- 404 Page --}}</a>
-                                            <a class="nav-link" href="#">{{-- 500 Page --}}</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="# ">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                {{-- Charts --}}
+                            <a class="nav-link collapsed" href="{{ route('areas.index') }}" aria-expanded="false">
+                                <div><i class="bi bi-hospital"></i>   Áreas</div>
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>                            
+                            <a class="nav-link collapsed" href="{{ route('equipment.index') }}" aria-expanded="false">
+                                <div><i class="bi bi-robot"></i>   Equipos</div>
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                {{-- Tables --}}
+                            <a class="nav-link collapsed" href="{{ route('accessory.index') }}" aria-expanded="false">
+                                <div><i class="bi bi-columns-gap"></i>   Accesorios</div>
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                         </div>
                     </div>
