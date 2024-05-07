@@ -6,7 +6,8 @@ use App\Http\Controllers\PetitionController;
 use App\Http\Controllers\AccessoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
-use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
