@@ -20,6 +20,15 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="puesto" value="{{ __('Puesto') }}" />
+                <select id="puesto" class="block mt-1 w-full" name="puesto" :value="old('puesto')" required>
+                    <option value="">Selecciona un puesto</option>
+                    <option value="Ingeniero biomedico">Ingeniero biomédico</option>
+                    <option value="Enfermero">Enfermero</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
