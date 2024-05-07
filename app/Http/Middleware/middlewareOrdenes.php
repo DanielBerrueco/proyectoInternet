@@ -15,7 +15,7 @@ class middlewareOrdenes
         }
 
         // Si no cumple con las condiciones, redirige a una página de error o a otra ruta
-        return redirect()->route('order');
+        return redirect()->route('order.index');
  // Puedes cambiar 'error' por la ruta que desees
     }
 }
