@@ -50,31 +50,31 @@ class UserSeeder extends Seeder
                 'name'=>$Faker -> name,
                 'email'=>$Faker -> unique()->safeEmail,
                 'password'=>'$2y$12$shtABVkMlptgpCrE1TSf8ePsL2U49gfItbU1ombsPPu/J56gB2stC',
-                'puesto'=>'Biomedico'
+                'puesto'=>'Ingeniero biomedico'
             ]);
         User::create([
                 'name'=>$Faker -> name,
                 'email'=>$Faker -> unique()->safeEmail,
                 'password'=>'$2y$12$shtABVkMlptgpCrE1TSf8ePsL2U49gfItbU1ombsPPu/J56gB2stC',
-                'puesto'=>'Biomedico'
+                'puesto'=>'Ingeniero biomedico'
             ]);
         User::create([
                 'name'=>$Faker -> name,
                 'email'=>$Faker -> unique()->safeEmail,
                 'password'=>'$2y$12$shtABVkMlptgpCrE1TSf8ePsL2U49gfItbU1ombsPPu/J56gB2stC',
-                'puesto'=>'Biomedico'
+                'puesto'=>'Ingeniero biomedico'
             ]);
         User::create([
                 'name'=>$Faker -> name,
                 'email'=>$Faker -> unique()->safeEmail,
                 'password'=>'$2y$12$shtABVkMlptgpCrE1TSf8ePsL2U49gfItbU1ombsPPu/J56gB2stC',
-                'puesto'=>'Biomedico'
+                'puesto'=>'Ingeniero biomedico'
             ]);
         User::create([
                 'name'=>$Faker -> name,
                 'email'=>$Faker -> unique()->safeEmail,
                 'password'=>'$2y$12$shtABVkMlptgpCrE1TSf8ePsL2U49gfItbU1ombsPPu/J56gB2stC',
-                'puesto'=>'Biomedico'
+                'puesto'=>'Ingeniero biomedico'
             ]);
     }
 }
