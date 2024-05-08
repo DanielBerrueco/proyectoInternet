@@ -10,6 +10,9 @@
                 <option value="Funcionando" @selected (old('stats') ==  'Funcionando')>Funcionando</option>
                 <option value="En reparacion" @selected(old('stats') ==  'En reparacion')>En reparacion</option>
                 <option value="Fuera servicio" @selected(old('stats') ==  'Fuera servicio')>Fuera de servicio</option>
+                @error('stats')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror 
             </select>
             </div> 
 
