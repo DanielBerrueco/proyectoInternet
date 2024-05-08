@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Middleware\middlewareOrdenes;
+use App\Mail\OrdenServicio;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -60,9 +63,15 @@ class OrderController extends Controller
         $order->falla = $request->falla;
         $order->fecha_ejecucion = $request->fecha_ejecucion;
         $order->save();
+        // Obtener la dirección de correo electrónico del usuario actual
+        $userEmail = Auth::user()->email;
 
-        return redirect()->route('order.index');
-    
+        // Envía el correo electrónico al usuario actual
+        Mail::to($userEmail)->send(new OrdenServicio($order));
+
+  
+        //return redirect()->route('order.index');
+        return redirect()->route('order.index')->with('success', '¡Orden creada con éxito y correo electrónico enviado!');
     }
 
     /**
@@ -101,6 +110,7 @@ class OrderController extends Controller
         $order->falla = $request->falla;
         $order->fecha_ejecucion = $request->fecha_ejecucion;
         $order->save();*/
+        
         
         return redirect()->route('order.show', $order);
     }

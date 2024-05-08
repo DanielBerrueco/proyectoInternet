@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PDFController;
+use App\Mail\OrdenServicio;
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +36,12 @@ Route::middleware([
     })->name('dashboard');
 });
 
+/*Route ::get('orderServicio', function( ){
+    Mail::to('dib@hcg.com')
+        ->send(new orderServicio);
+    return "Mensaje Enviado";
 
+})->name('order');*/
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('accessory', AccessoryController::class);
@@ -43,5 +51,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('petition', PetitionController::class);
     Route::resource('perfil', ProfileController::class);
     Route::get('/generar-pdf', [PDFController::class, 'generarPDF'])->name('generar.pdf');
+    Route::get('orderServicio', function () {
+        Mail::to('dib@hcg.com')->send(new OrdenServicio);
+        return "Mensaje Enviado";
+    })->name('orderServicio');
         
 });
