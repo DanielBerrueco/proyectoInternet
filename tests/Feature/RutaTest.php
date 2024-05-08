@@ -2,19 +2,20 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 
 class RutaTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      */
     public function test_order_index_route(): void
     {
+        $this->seed();
         // Obtener el usuario por su email
         $user = User::where('email', 'example@test.com')->first();
 
@@ -31,5 +32,7 @@ class RutaTest extends TestCase
 
         // Verificar que se devuelva el código de estado 200
         $response->assertStatus(200);
+
+        echo 'Ruta alcanzada exitosamente';
     }
 }

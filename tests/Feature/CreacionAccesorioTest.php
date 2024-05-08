@@ -2,20 +2,22 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Accessory;
 
 class CreacionAccesorioTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
     /**
      * Test para verificar la creación de un accesorio y redireccionamiento.
      */
     public function test_creacion_accesorio_y_redireccionamiento(): void
     {
+        
+        $this->seed();
         // Obtener un usuario de la base de datos utilizando el seeder
         $user = User::where('email', 'example@test.com')->first();
 
@@ -39,6 +41,7 @@ class CreacionAccesorioTest extends TestCase
         // Verificar que se redirecciona correctamente
         $response->assertRedirect(route('accessory.index'));
 
-        // Opcional: Verificar otros aspectos según tus requisitos
+        echo 'Creacion de accesorio exitosa';
+
     }
 }
