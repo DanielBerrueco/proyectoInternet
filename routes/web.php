@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PDFController;
+use App\Mail\EmailPersonalizado;
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,3 +48,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/generar-pdf', [PDFController::class, 'generarPDF'])->name('generar.pdf');
         
 });
+
+Route::get('emailPersonalizado', function(){
+    Mail::to('zuzuky@hcg.com')
+        ->send(new EmailPersonalizado);
+        return "Mensaje enviado";
+
+})->name('emailPersonalizado');

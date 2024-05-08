@@ -59,4 +59,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'ingBiomedico_id');
+    }
 }

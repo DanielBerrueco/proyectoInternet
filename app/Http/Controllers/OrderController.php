@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Middleware\middlewareOrdenes;
+use App\Mail\EmailPersonalizado;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrdenServicio;
+use App\Models\User;
 
 class OrderController extends Controller
 {
@@ -59,9 +64,19 @@ class OrderController extends Controller
         $order->falla = $request->falla;
         $order->fecha_ejecucion = now();
         $order->save();
+     
+        $biomedicoId = $order->ingBiomedico_id;
+        $biomedico = User::find($biomedicoId);
+
+        if ($biomedico) {
+            $biomedicoEmail = $biomedico->email;
+           
+            Mail::to($biomedicoEmail)->send(new EmailPersonalizado($order));
+        } else {
+           return "No se encontro";
+        }
 
         return redirect()->route('order.index');
-    
     }
 
     /**
