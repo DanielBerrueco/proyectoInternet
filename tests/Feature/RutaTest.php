@@ -9,7 +9,6 @@ use App\Models\User;
 
 class RutaTest extends TestCase
 {
-    use RefreshDatabase;
 
     /**
      * A basic feature test example.
