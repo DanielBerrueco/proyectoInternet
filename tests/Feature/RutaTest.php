@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,8 +16,13 @@ class RutaTest extends TestCase
      */
     public function test_order_index_route(): void
     {
-        // Obtener el usuario creado a través del seeder
+        // Obtener el usuario por su email
         $user = User::where('email', 'example@test.com')->first();
+
+        dd($user);
+
+        // Verificar que el usuario obtenido no sea null
+        $this->assertNotNull($user, 'No se encontró el usuario con el correo electrónico proporcionado.');
 
         // Autenticar al usuario obtenido
         $this->actingAs($user);
