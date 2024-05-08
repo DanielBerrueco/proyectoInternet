@@ -31,6 +31,6 @@ class RutaTest extends TestCase
 
         // Verificar que se devuelva el código de estado 200
         $response->assertStatus(200);
-        echo: 'Ruta alcanzada exitosamente';
+        echo 'Ruta alcanzada exitosamente';
     }
 }
