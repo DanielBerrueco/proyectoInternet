@@ -39,7 +39,6 @@ class OrderController extends Controller
             'area_id' =>  ['required', 'integer'],
             'ubicacion' =>  ['required', 'string', 'max:255'],
             'falla' => ['required', 'string', 'max:255'],
-            'fecha_ejecucion' => ['required', 'date'],
         ]); 
         
         $order = new Order();
@@ -50,7 +49,7 @@ class OrderController extends Controller
         $order->area_id = $request->area_id;
         $order->ubicacion = $request->ubicacion;
         $order->falla = $request->falla;
-        $order->fecha_ejecucion = $request->fecha_ejecucion;
+        $order->fecha_ejecucion = now();
         $order->save();
 
         return redirect()->route('order.index');
