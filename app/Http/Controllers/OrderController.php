@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Middleware\middlewareOrdenes;
+use App\Models\Accessory;
+use App\Models\Area;
+use App\Models\Equipment;
+use App\Models\User;
 
 class OrderController extends Controller
 {
@@ -27,9 +31,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        // Verificar que el usuario tenga el puesto de "Enfermero" antes de mostrar la vista
-        
-        return view('order/createOrder');
+        $equipment = Equipment::all();
+        $biomedics = User::where('puesto', 'Biomedico')->get();
+        $areas = Area::all();
+        return view('order/createOrder', compact('equipment', 'biomedics', 'areas'));
     }
 
     /**
@@ -41,7 +46,6 @@ class OrderController extends Controller
           
             
             'stats' =>   ['required'],
-            'jefa_id' =>   ['required', 'integer'],
             'equipo_id' =>   ['required', 'integer'],
             'ingBiomedico_id' =>   ['required', 'integer'],
             'area_id' =>  ['required', 'integer'],
@@ -51,7 +55,7 @@ class OrderController extends Controller
         
         $order = new Order();
         $order->stats = $request->stats;
-        $order->jefa_id = $request->jefa_id;
+        $order->jefa_id = auth()->user()->id;
         $order->equipo_id = $request->equipo_id;
         $order->ingBiomedico_id= $request->ingBiomedico_id;
         $order->area_id = $request->area_id;

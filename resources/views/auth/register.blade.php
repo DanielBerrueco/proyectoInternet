@@ -23,7 +23,7 @@
                 <x-label for="puesto" value="{{ __('Puesto') }}" />
                 <select id="puesto" class="block mt-1 w-full" name="puesto" :value="old('puesto')" required>
                     <option value="">Selecciona un puesto</option>
-                    <option value="Ingeniero biomedico">Ingeniero biomédico</option>
+                    <option value="Ingeniero biomedico">Ingeniero biomedico</option>
                     <option value="Enfermero">Enfermero</option>
                 </select>
             </div>
