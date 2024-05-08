@@ -76,5 +76,12 @@ class UserSeeder extends Seeder
                 'password'=>'$2y$12$shtABVkMlptgpCrE1TSf8ePsL2U49gfItbU1ombsPPu/J56gB2stC',
                 'puesto'=>'Ingeniero biomedico'
             ]);
+        
+        User::create([
+            'name'=>'Pruebas',
+            'email'=>'example@test.com',
+            'password'=>'$2y$12$shtABVkMlptgpCrE1TSf8ePsL2U49gfItbU1ombsPPu/J56gB2stC',
+            'puesto'=>'Enfermero'
+        ]);
     }
 }
