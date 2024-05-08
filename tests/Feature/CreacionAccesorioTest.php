@@ -39,6 +39,6 @@ class CreacionAccesorioTest extends TestCase
         // Verificar que se redirecciona correctamente
         $response->assertRedirect(route('accessory.index'));
 
-        // Opcional: Verificar otros aspectos según tus requisitos
+        echo 'Creación de accesorio exitosa';
     }
 }
