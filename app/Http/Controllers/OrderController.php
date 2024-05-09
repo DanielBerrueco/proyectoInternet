@@ -9,6 +9,9 @@ use App\Mail\EmailPersonalizado;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrdenServicio;
+use App\Models\Accessory;
+use App\Models\Area;
+use App\Models\Equipment;
 use App\Models\User;
 
 class OrderController extends Controller
@@ -32,9 +35,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        // Verificar que el usuario tenga el puesto de "Enfermero" antes de mostrar la vista
-        
-        return view('order/createOrder');
+        $equipment = Equipment::all();
+        $biomedics = User::where('puesto', 'Biomedico')->get();
+        $areas = Area::all();
+        return view('order/createOrder', compact('equipment', 'biomedics', 'areas'));
     }
 
     /**
@@ -45,18 +49,17 @@ class OrderController extends Controller
         $request->validate([
           
             
-            'stats' =>   ['required'],
-            'jefa_id' =>   ['required', 'integer'],
-            'equipo_id' =>   ['required', 'integer'],
-            'ingBiomedico_id' =>   ['required', 'integer'],
-            'area_id' =>  ['required', 'integer'],
+            'stats' =>   ['required', 'not_in:'],
+            'equipo_id' =>   ['required', 'integer', 'not_in:'],
+            'ingBiomedico_id' =>   ['required', 'integer', 'not_in:'],
+            'area_id' =>  ['required', 'integer', 'not_in:'],
             'ubicacion' =>  ['required', 'string', 'max:255'],
             'falla' => ['required', 'string', 'max:255'],
         ]); 
         
         $order = new Order();
         $order->stats = $request->stats;
-        $order->jefa_id = $request->jefa_id;
+        $order->jefa_id = auth()->user()->id;
         $order->equipo_id = $request->equipo_id;
         $order->ingBiomedico_id= $request->ingBiomedico_id;
         $order->area_id = $request->area_id;

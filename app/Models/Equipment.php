@@ -15,6 +15,7 @@ class Equipment extends Model
         'n_serie',
         'status_eq_med',
         'area_id',
+        'ruta_manual',
         //protected $guarded = ['id, created_at, 'updated_at'];
     ];
     public function area()
@@ -25,5 +26,10 @@ class Equipment extends Model
     public function accessory()
     {
         return $this->belongsToMany(Accessory::class);
+    }
+
+    public function archivo()
+    {
+        return $this->hasOne(Archivo::class);
     }
 }
