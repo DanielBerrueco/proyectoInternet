@@ -5,8 +5,8 @@
             @csrf
             <div class="form-group">
             <label for="stats">Status</label>
-            <select name="stats" id="stats" class="form-control">
-                <option value="0">Seleccione una opción</option>
+            <select name="stats" id="stats" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
                 <option value="Funcionando" @selected (old('stats') ==  'Funcionando')>Funcionando</option>
                 <option value="En reparacion" @selected(old('stats') ==  'En reparacion')>En reparacion</option>
                 <option value="Fuera servicio" @selected(old('stats') ==  'Fuera servicio')>Fuera de servicio</option>
@@ -19,8 +19,8 @@
             </div>           
             <div class="form-group">
             <label for="equipo_id">Equipo Médico: </label>
-            <select name="equipo_id" class="form-control">
-                <option value="0">Seleccione una opción</option>
+            <select name="equipo_id" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
                 @foreach($equipment as $equip)
                     <option value="{{ $equip->id }}">{{ $equip->nombre }}</option>
                 @endforeach
@@ -33,8 +33,8 @@
 
             <div class="form-group">
             <label for="ingBiomedico_id">Ingeniero Biomédico: </label>
-            <select name="ingBiomedico_id" class="form-control">
-                <option value="0">Seleccione una opción</option>
+            <select name="ingBiomedico_id" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
                 @foreach($biomedics as $biomedic)
                     <option value="{{ $biomedic->id }}">{{ $biomedic->name }}</option>
                 @endforeach
@@ -47,8 +47,8 @@
 
             <div class="form-group">
             <label for="area_id">Area: </label>
-            <select name="area_id" class="form-control">
-                <option value="0">Seleccione una opción</option>
+            <select name="area_id" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
                 @foreach($areas as $area)
                     <option value="{{ $area->id }}">{{ $area->servicio }}</option>
                 @endforeach

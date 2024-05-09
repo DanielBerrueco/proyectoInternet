@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-
+use App\Models\Archivo;
 use Illuminate\Database\Seeder;
 use App\Models\Area;
 use App\Models\User;
@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class, 
             AccessoryEquipmentSeeder::class,
             PetitionSeeder::class,
+            ArchivoSeeder::class,
         ]);
     }
 }

@@ -43,5 +43,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('petition', PetitionController::class);
     Route::resource('perfil', ProfileController::class);
     Route::get('/generar-pdf', [PDFController::class, 'generarPDF'])->name('generar.pdf');
+    Route::get('download/{archivo}',[EquipmentController::class, 'download'])->name('equipment.download');
         
 });

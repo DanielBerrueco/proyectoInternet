@@ -1,7 +1,7 @@
 <x-main-layout titulo="Editar">
 <a href="{{route('equipment.index') }}" class="btn btn-primary">Regresar</a>
         <div class="card-body">
-            <form action=" {{route('equipment.update', $equipment->id) }}" method="POST">
+            <form action="{{route('equipment.update', $equipment->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
@@ -37,6 +37,16 @@
                 <input type="text" id="area_id" name="area_id" value="{{ $equipment->area_id }}" class="form-control">
                 </div>
                 <br>
+
+                <div class="form-group">
+                    <label for="archivo">Manual del equipo</label>
+                    <input type="file" name="archivo" id="archivo" class="form-control" accept=".pdf">
+                @error('archivo')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </div>
+                <br>
+
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>

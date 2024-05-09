@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accessory;
+use App\Models\Archivo;
+use App\Models\Area;
 use App\Models\Equipment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class EquipmentController extends Controller
 {
@@ -23,7 +26,8 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        return view('equipment/createEquipment');
+        $areas = Area::all();
+        return view('equipment/createEquipment', compact('areas'));
     }
 
     /**
@@ -39,21 +43,22 @@ class EquipmentController extends Controller
             'n_serie' =>   ['required', 'string', 'max:255'],
             'status_eq_med' => ['required'],
             'area_id' =>   ['required', 'integer'],
+            'archivo' =>['required', 'file', 'mimes:pdf'],
             
         ]);
-        
-        
-        
-        $equipment = new Equipment();
-        $equipment->id = $request->id;
-        $equipment->nombre = $request->nombre;
-        $equipment->marca = $request->marca;
-        $equipment->modelo = $request->modelo;
-        $equipment->n_serie = $request->n_serie;
-        $equipment->status_eq_med= $request->status_eq_med;
-        $equipment->area_id = $request->area_id;
-        
-        $equipment ->save();
+
+        $equipment=Equipment::create($request->all());
+
+        if ($request->file('archivo')->isValid()){
+            $ruta=$request->archivo->store('', 'public');
+
+            $archivo = new Archivo();
+            $archivo->ubicacion=$ruta;
+            $archivo->nombre_original = $request->archivo->getClientOriginalName();
+            $archivo->mime = $request->archivo->getClientMimeType();
+            $archivo->equipment_id = $equipment->id;
+            $archivo->save();
+        }
 
         return redirect()->route('equipment.index');
     }
@@ -81,15 +86,37 @@ class EquipmentController extends Controller
      */
     public function update(Request $request, Equipment $equipment)
     {
-        $equipment->update($request->all());
-        /*$equipment = new Equipment();
-        $equipment->id = $request->id;
-        $equipment->nombre = $request->nombre;
-        $equipment->marca = $request->marca;
-        $equipment->modelo = $request->modelo;
-        $equipment->n_serie = $request->n_serie;
-        $equipment->status_eq_med= $request->status_eq_med;
-        $equipment->area_id = $request->area_id;*/
+        $request->validate([
+          
+            'nombre' =>   ['required', 'string', 'max:255'],
+            'marca' =>   ['required', 'string', 'max:255'],
+            'modelo' =>   ['required', 'string', 'max:255'],
+            'n_serie' =>   ['required', 'string', 'max:255'],
+            'status_eq_med' => ['required'],
+            'area_id' =>   ['required', 'integer'],
+            'archivo' =>['nullable', 'file', 'mimes:pdf'],
+            
+        ]);
+
+        $equipment->update($request->except('archivo'));
+
+        if ($request->file('archivo')->isValid()) {
+            $archivoAnterior = $equipment->archivo;
+            if ($archivoAnterior) {
+                Storage::disk('public')->delete($archivoAnterior->ubicacion);
+                $archivoAnterior->delete();
+            }
+            
+            $ruta = $request->archivo->store('', 'public');
+
+            $archivoNuevo = new Archivo();
+            $archivoNuevo->ubicacion = $ruta;
+            $archivoNuevo->nombre_original = $request->archivo->getClientOriginalName();
+            $archivoNuevo->mime = $request->archivo->getClientMimeType();
+            $archivoNuevo->equipment_id = $equipment->id;
+            $archivoNuevo->save();
+        }
+
 
         return redirect()->route('equipment.show', $equipment);
     }
@@ -101,5 +128,10 @@ class EquipmentController extends Controller
     {
         $equipment->delete();
         return redirect()->route('equipment.index');
+    }
+
+    public function download(Archivo $archivo)
+    {
+        return response()->download(storage_path('app/public/' . $archivo->ubicacion), $archivo->nombre_original);
     }
 }

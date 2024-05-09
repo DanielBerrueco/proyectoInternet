@@ -27,4 +27,9 @@ class Equipment extends Model
     {
         return $this->belongsToMany(Accessory::class);
     }
+
+    public function archivo()
+    {
+        return $this->hasOne(Archivo::class);
+    }
 }

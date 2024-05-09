@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipment', function (Blueprint $table) {
+        Schema::create('archivos', function (Blueprint $table){
             $table->id();
-            $table->string('nombre');
-            $table->string('marca');
-            $table->string('modelo');
-            $table->string('n_serie');
-            $table->string('status_eq_med');
-            $table->foreignId('area_id')->constrained('areas');
+            $table->foreignId('equipment_id')->constrained('equipment')->onDelete('cascade');
+            $table->string('ubicacion');
+            $table->string('nombre_original');
+            $table->string('mime');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipment');
+        Schema::dropIfExists('archivos');
     }
 };

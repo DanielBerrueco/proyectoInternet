@@ -45,10 +45,10 @@ class OrderController extends Controller
         $request->validate([
           
             
-            'stats' =>   ['required'],
-            'equipo_id' =>   ['required', 'integer'],
-            'ingBiomedico_id' =>   ['required', 'integer'],
-            'area_id' =>  ['required', 'integer'],
+            'stats' =>   ['required', 'not_in:'],
+            'equipo_id' =>   ['required', 'integer', 'not_in:'],
+            'ingBiomedico_id' =>   ['required', 'integer', 'not_in:'],
+            'area_id' =>  ['required', 'integer', 'not_in:'],
             'ubicacion' =>  ['required', 'string', 'max:255'],
             'falla' => ['required', 'string', 'max:255'],
         ]); 
