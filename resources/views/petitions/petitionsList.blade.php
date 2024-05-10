@@ -38,6 +38,9 @@
                 @endforeach
             </tbody>
         </table>
-        <a class="btn btn-primary" href="{{ route('petition.create') }}">Agregar nueva petición</a>
+        <a class="btn btn-primary" href="{{ route('petition.create') }}" id="crearPeticion">Agregar nueva petición</a>
+        <div class="alert alert-warning alert-dismissible fade" role="alert" id="alertaIngeniero">
+            <strong>¡Parece que no eres Ingeniero biomédico!</strong> Recuerda que sólo los Ingenieros biomédicos pueden levantar peticiones.
+        </div>
     </div>
 </x-main-layout>

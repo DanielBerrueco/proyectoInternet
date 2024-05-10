@@ -43,6 +43,9 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="{{route('order.create')}}" class="btn btn-primary">Crear Orden</a>
+        <a href="{{route('order.create')}}" class="btn btn-primary" id="crearOrden">Crear Orden</a>
+        <div class="alert alert-warning alert-dismissible fade" role="alert" id="alertaEnfermero">
+            <strong>¡Parece que no eres Enfermero!</strong> Recuerda que sólo los enfermeros pueden levantar órdenes de servicio.
+        </div>
     </div>
 </x-main-layout>

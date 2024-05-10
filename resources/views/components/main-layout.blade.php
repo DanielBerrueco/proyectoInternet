@@ -109,9 +109,20 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
         <script>
-            document.getElementById('logout-link').addEventListener('click', function(event) {
-                event.preventDefault();
-                document.getElementById('logout-form').submit();
+            document.getElementById('crearOrden').addEventListener('click', function(event) {
+                if ('{{auth()->user()->puesto}}' !=='Enfermero') {
+                    // event.preventDefault();
+                    document.getElementById('alertaEnfermero').classList.add('show');
+                }
+            });
+        </script>
+        <script>
+            document.getElementById('crearPeticion').addEventListener('click', function(event) {
+                if ('{{auth()->user()->puesto}}' !=='Ingeniero biomedico') {
+                    event.preventDefault();
+                    document.getElementById('alertaIngeniero').classList.add('show');
+                }
+            });
         </script>
         
     </body>

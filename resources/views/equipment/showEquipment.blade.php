@@ -19,11 +19,17 @@
             </ul>
         </li>
         <ul class="list-group list-group-flush">Manual
-            <li class="list-group-item">
-                <a href="{{ route('equipment.download', $equipment->archivo) }}" class="btn btn-primary">
-                    Descargar
-                </a>
-            </li>
+            @if($equipment->archivo)
+                <li class="list-group-item">
+                    <a href="{{ route('equipment.download', $equipment->archivo) }}" class="btn btn-primary">
+                        Descargar
+                    </a>
+                </li>
+            @else
+            <div class="alert alert-danger" role="alert">
+                No hay manual cargado. Si quiere agregar <a href="{{ route('equipment.edit', $equipment) }}" class="alert-link">haga clic aquí.</a>
+              </div>
+            @endif    
         </li>
     </ul>
 </x-main-layout>
