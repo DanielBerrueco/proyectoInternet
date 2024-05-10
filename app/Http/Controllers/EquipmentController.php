@@ -100,7 +100,7 @@ class EquipmentController extends Controller
 
         $equipment->update($request->except('archivo'));
 
-        if ($request->file('archivo')->isValid()) {
+        if ($request->hasFile('archivo') && $request->file('archivo')->isValid()) {
             $archivoAnterior = $equipment->archivo;
             if ($archivoAnterior) {
                 Storage::disk('public')->delete($archivoAnterior->ubicacion);
