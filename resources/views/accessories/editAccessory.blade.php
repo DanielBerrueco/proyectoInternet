@@ -1,5 +1,6 @@
 <x-main-layout titulo="Editar accesorio">
     <a href="{{ route('accessory.index') }}" class="btn btn-primary">Regresar</a>
+    <hr>
     <div class="card-body">
         <form action="{{ route('accessory.update', $accessory) }}" method="post">
             @csrf

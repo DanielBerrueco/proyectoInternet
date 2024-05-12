@@ -31,8 +31,8 @@ class AccessoryController extends Controller
     {
         $request->validate([
             'nombre' => ['required', 'string', 'max:255'],
-            'stock' => ['required', 'integer'],
-            'minimo' => ['required', 'integer'],
+            'stock' => ['required', 'integer', 'min:0'],
+            'minimo' => ['required', 'integer', 'min:0'],
             'ubicacion' => ['required', 'string', 'max:255'],
         ]);
 

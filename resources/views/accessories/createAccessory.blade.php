@@ -1,5 +1,6 @@
-<x-main-layout titulo="Crear nuevo accesorio">
+<x-main-layout titulo="Agregar nuevo accesorio">
     <a href="{{ route('accessory.index') }}" class="btn btn-primary">Regresar</a>
+    <hr>
     <div class="card-body">
         <form action="{{ route('accessory.store') }}" method="post">
             @csrf

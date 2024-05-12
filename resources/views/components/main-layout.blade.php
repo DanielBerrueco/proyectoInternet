@@ -15,7 +15,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Depto Ing Biomedica</a>
+            <h1 class="navbar-brand ps-3">Hospital Civil</h1>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -81,8 +81,7 @@
                 <main>
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            {{ $titulo }}
+                            <h1>{{ $titulo }}</h1>
                         </div>
                         <div class="card-body">
                             {{ $slot }}

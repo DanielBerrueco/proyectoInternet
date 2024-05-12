@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('n_serie');
             $table->string('status_eq_med');
             $table->foreignId('area_id')->constrained('areas');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

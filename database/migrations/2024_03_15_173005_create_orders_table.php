@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('area_id')->constrained('areas');
             $table->string('ubicacion');
             $table->text('falla');
-            $table->date('fecha_ejecucion');
+            $table->date('fecha_ejecucion')->nullable();
             $table->timestamps();
         });
     }

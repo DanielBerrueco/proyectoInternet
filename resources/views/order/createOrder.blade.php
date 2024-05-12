@@ -1,5 +1,6 @@
-<x-main-layout titulo="Crear">
+<x-main-layout titulo="Crear orden">
     <a href="{{route('order.index')}}" class="btn btn-primary">Regresar</a>
+    <hr>
     <div class="card-body">
         <form action="{{route('order.store') }}" method="POST">
             @csrf
@@ -14,9 +15,9 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror 
             </select>
+            </div>
             <br>
 
-            </div>           
             <div class="form-group">
             <label for="equipo_id">Equipo Médico: </label>
             <select name="equipo_id" class="form-control" required>
@@ -75,6 +76,8 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             </div>
+            <br>
+            
             <input type="submit" class="btn btn-primary">
         </form>
     </div>

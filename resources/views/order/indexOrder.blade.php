@@ -1,5 +1,4 @@
-<x-main-layout titulo="Index">
-<h1>Listado de Ordenes</h1> 
+<x-main-layout titulo="Listado de órdenes">
     <div class="card-body">  
         <table id="datatablesSimple">
             <thead>
@@ -11,9 +10,6 @@
                     <th>Ing Biomedico</th>
                     <th>Area</th>
                     <th>Ubicacion</th>
-                    <th>Falla</th>
-                    <th>Fecha de creacion:   </th>
-                    <th>Fecha ejecuccion:   </th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -26,12 +22,9 @@
                         <td>{{ $order->equipment->nombre }}</td>
                         <td>{{ $order->user->name  }}</td>
                         <td>{{ $order->area->servicio }}</td>
-                        <td>{{ $order->ubicacion }}</td>
-                        <td>{{ $order->falla }}</td>   
-                        <td>{{ $order->created_at }}</td> 
-                        <td>{{ $order->fecha_ejecucion }}</td> 
+                        <td>{{ $order->ubicacion }}</td> 
                         <td>
-                            <a class="btn btn-primary" href="{{ route('order.show', $order) }}">Ver</a>
+                            <a class="btn btn-primary" href="{{ route('order.show', $order) }}">Ver detalles</a>
                             <a  class="btn btn-primary" href="{{ route('order.edit', $order) }}">Editar</a>
                             <form action= "{{ route('order.destroy', $order) }}" method= "POST">
                                 @csrf

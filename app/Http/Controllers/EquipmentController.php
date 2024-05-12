@@ -27,7 +27,8 @@ class EquipmentController extends Controller
     public function create()
     {
         $areas = Area::all();
-        return view('equipment/createEquipment', compact('areas'));
+        $accessories =Accessory::all();
+        return view('equipment/createEquipment', compact('areas', 'accessories'));
     }
 
     /**
@@ -42,14 +43,15 @@ class EquipmentController extends Controller
             'modelo' =>   ['required', 'string', 'max:255'],
             'n_serie' =>   ['required', 'string', 'max:255'],
             'status_eq_med' => ['required'],
-            'area_id' =>   ['required', 'integer'],
-            'archivo' =>['required', 'file', 'mimes:pdf'],
+            'area_id' =>   ['required', 'integer', 'not_in:'],
+            'archivo' =>['nullable', 'file', 'mimes:pdf'],
             
         ]);
 
         $equipment=Equipment::create($request->all());
+        $equipment->accessory()->attach($request->accessories);
 
-        if ($request->file('archivo')->isValid()){
+        if ($request->hasFile('archivo') && $request->file('archivo')->isValid()){
             $ruta=$request->archivo->store('', 'public');
 
             $archivo = new Archivo();
@@ -78,7 +80,11 @@ class EquipmentController extends Controller
      */
     public function edit(Equipment $equipment)
     {
-        return view('equipment.editEquipment', compact('equipment'));
+        $areas = Area::all();
+        $selectedArea = $equipment->area->servicio;
+        $accessories = Accessory::all();
+        $selectedAccessories = $equipment->accessory->pluck('id')->toArray();
+        return view('equipment.editEquipment', compact('equipment', 'areas', 'selectedArea', 'accessories', 'selectedAccessories'));
     }
 
     /**
@@ -99,6 +105,10 @@ class EquipmentController extends Controller
         ]);
 
         $equipment->update($request->except('archivo'));
+
+        if($request->has('accessories')){
+            $equipment->accessory()->sync($request->accessories);
+        }
 
         if ($request->hasFile('archivo') && $request->file('archivo')->isValid()) {
             $archivoAnterior = $equipment->archivo;

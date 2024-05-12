@@ -25,7 +25,9 @@ class PetitionController extends Controller
      */
     public function create()
     {
-        return view('petitions/createPetition');
+        $accessories = Accessory::all();
+        $equipment = Equipment::all();
+        return view('petitions/createPetition', compact('accessories', 'equipment'));
     }
 
     /**
@@ -34,16 +36,15 @@ class PetitionController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'accesorio_id' => ['required', 'integer'],
-            'equipo_id' => ['required', 'integer'],
-            'ingBiomedico_id' => ['required', 'integer'],
+            'accesorio_id' => ['required', 'integer', 'not_in:'],
+            'equipo_id' => ['required', 'integer', 'not_in:'],
         ]);
 
         $peticion = new Petition();
         $peticion -> fecha_hora = now();
         $peticion -> accesorio_id = $request -> accesorio_id;
         $peticion -> equipo_id = $request -> equipo_id;
-        $peticion -> ingBiomedico_id = $request -> ingBiomedico_id;
+        $peticion -> ingBiomedico_id = auth()->user()->id;
         $peticion -> save();
 
         return redirect() -> route('petition.index');
@@ -62,7 +63,11 @@ class PetitionController extends Controller
      */
     public function edit(Petition $petition)
     {
-        return view('petitions/editPetition', compact('petition'));
+        $accessories = Accessory::all();
+        $equipment = Equipment::all();
+        $selectedEquip = $petition->equipment->nombre;
+        $selectedAccessory = $petition->accessory->nombre;
+        return view('petitions/editPetition', compact('petition', 'accessories', 'equipment', 'selectedEquip', 'selectedAccessory'));
     }
 
     /**
@@ -73,15 +78,13 @@ class PetitionController extends Controller
         $request -> validate([
             'accesorio_id' => ['required', 'integer'],
             'equipo_id' => ['required', 'integer'],
-            'ingBiomedico_id' => ['required', 'integer'],
         ]);
 
         $petition -> accesorio_id = $request -> accesorio_id;
         $petition -> equipo_id = $request -> equipo_id;
-        $petition -> ingBiomedico_id = $request -> ingBiomedico_id;
-        $petition -> save();
+        $petition -> update();
 
-        return redirect() -> route('petition.show', compact('petition'));
+        return redirect()->route('petition.show', compact('petition'));
     }
 
     /**

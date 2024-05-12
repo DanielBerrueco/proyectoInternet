@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AreaController extends Controller
@@ -21,7 +22,9 @@ class AreaController extends Controller
      */
     public function create()
     {
-        return view('areas/agregarArea');
+        $bosses = User::where('puesto', 'Enfermero')->get();
+        $biomedics = User::where('puesto', 'Ingeniero biomedico')->get();
+        return view('areas/agregarArea', compact('biomedics', 'bosses'));
     }
 
     /**
@@ -32,8 +35,8 @@ class AreaController extends Controller
        $request->validate([
             'piso'=>['required','string'],
             'servicio'=>['required','string'],
-            'jefe_id'=>['required','string'],
-            'ingBiomedico_id'=>['required','string'],
+            'jefe_id'=>['required','string', 'not_in:'],
+            'ingBiomedico_id'=>['required','string', 'not_in:'],
        ]);
        $area=new Area();
        $area->piso=$request->piso;
@@ -57,7 +60,11 @@ class AreaController extends Controller
      */
     public function edit(Area $area)
     {
-        return view('areas/editArea', compact('area'));
+        $bosses = User::where('puesto', 'Enfermero')->get();
+        $biomedics = User::where('puesto', 'Ingeniero biomedico')->get();
+        $selectedBoss = $area->user2->name;
+        $selectedBiomedic = $area->user->name;
+        return view('areas/editArea', compact('area', 'biomedics', 'bosses', 'selectedBoss', 'selectedBiomedic'));
     }
 
     /**

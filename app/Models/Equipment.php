@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Equipment extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $fillable = [
         'nombre',
        'marca',
@@ -31,5 +33,14 @@ class Equipment extends Model
     public function archivo()
     {
         return $this->hasOne(Archivo::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($equipment) {
+            $equipment->accessory()->detach();
+        });
     }
 }

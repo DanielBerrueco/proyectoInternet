@@ -1,11 +1,7 @@
-<x-main-layout titulo="Crear">
-  
+<x-main-layout titulo="Agregar equipo médico">
+    <a href="{{route('equipment.index') }}" class="btn btn-primary">Regresar</a>
+    <hr>
         <div class="card-body">
-
-        <a href="{{route('equipment.index') }}" class="btn btn-primary">Mostrar Listado de Equipos Medicos</a>
-     
-        <hr>
-
         <form action="{{route('equipment.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
@@ -56,7 +52,26 @@
             <br>
 
             <div class="form-group">
-                <label for="area_id">Area</label>
+                <label for="accessories">Accesorios</label>
+                <div style="height: 100px; overflow-y: auto;">
+                    @foreach($accessories as $accessory)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="accessories[]" value="{{ $accessory->id }}" {{ in_array($accessory->id, old('accessories', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="accessories">
+                                {{ $accessory->nombre }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+                @error('accessories')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div> 
+            <br>
+             
+
+            <div class="form-group">
+                <label for="area_id">Área</label>
                 <select name="area_id" class="form-control" required>
                     <option value="" disabled selected>Selecciona una opción</option>
                     @foreach($areas as $area)
@@ -71,7 +86,7 @@
 
             <div class="form-group">
                 <label for="archivo">Manual del equipo</label>
-                <input type="file" name="archivo" id="archivo" class="form-control" accept=".pdf" required>
+                <input type="file" name="archivo" id="archivo" class="form-control" accept=".pdf">
             @error('archivo')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror

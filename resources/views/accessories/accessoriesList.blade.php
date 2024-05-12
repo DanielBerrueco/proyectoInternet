@@ -1,4 +1,4 @@
-<x-main-layout titulo="Lista de accesorios">
+<x-main-layout titulo="Listado de accesorios">
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>

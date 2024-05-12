@@ -36,7 +36,7 @@ class OrderController extends Controller
     public function create()
     {
         $equipment = Equipment::all();
-        $biomedics = User::where('puesto', 'Biomedico')->get();
+        $biomedics = User::where('puesto', 'Ingeniero biomedico')->get();
         $areas = Area::all();
         return view('order/createOrder', compact('equipment', 'biomedics', 'areas'));
     }
@@ -65,7 +65,6 @@ class OrderController extends Controller
         $order->area_id = $request->area_id;
         $order->ubicacion = $request->ubicacion;
         $order->falla = $request->falla;
-        $order->fecha_ejecucion = now();
         $order->save();
      
         $biomedicoId = $order->ingBiomedico_id;
@@ -95,7 +94,10 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('order.editOrder', compact('order'));
+        $equipment = Equipment::all();
+        $biomedics = User::where('puesto', 'Ingeniero biomedico')->get();
+        $areas = Area::all();
+        return view('order.editOrder', compact('order', 'equipment', 'biomedics', 'areas'));
     }
 
     /**

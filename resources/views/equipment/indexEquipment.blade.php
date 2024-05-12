@@ -1,6 +1,4 @@
-<x-main-layout titulo="Index">
-
-<h1>Listado de Equipo Medico</h1> 
+<x-main-layout titulo="Listado de equipo médico">
     <div class="card-body">  
         <table id="datatablesSimple">
             <thead>
@@ -9,11 +7,9 @@
                     <th>Nombre</th>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    <th>No. Serie</th>
-                    <th>Accesorios</th>
+                    <th>Número de Serie</th>
                     <th>Status</th>
                     <th>Area</th>
-                    <th>Fecha</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -25,16 +21,10 @@
                         <td>{{ $equipment->marca}}</td>
                         <td>{{ $equipment->modelo}}</td>           
                         <td>{{ $equipment->n_serie}}</td>
-                        <td>
-                            @foreach ($equipment->accessory as $accessory)
-                                <li class="list-group-item">{{ $accessory->nombre }}</li>
-                            @endforeach
-                        </td>
                         <td>{{ $equipment->status_eq_med}}</td> 
-                        <td>{{ $equipment->area->servicio}}</td>  
-                        <td>{{ $equipment->created_at}}</td> 
+                        <td>{{ $equipment->area->servicio}}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('equipment.show', $equipment) }}">Ver</a>
+                            <a class="btn btn-primary" href="{{ route('equipment.show', $equipment) }}">Ver detalles</a>
                             <a class="btn btn-primary" href="{{ route('equipment.edit', $equipment) }}">Editar</a>
                             <form action= "{{ route('equipment.destroy', $equipment) }}" method= "POST">
                                 @csrf
